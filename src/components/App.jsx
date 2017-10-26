@@ -5,8 +5,9 @@ class App extends React.Component {
     this.state = { 
       video: window.exampleVideoData[0],
       videos: window.exampleVideoData,
-      value: null
-    };  
+      value: null, 
+    };
+    
     
   }
   
@@ -18,17 +19,31 @@ class App extends React.Component {
   }
   
   onSearchClick(input) {
+    this.setState({ 
+      value: input.target.value
+    });
     
-    // console.log('user typed in:', input.target.value);
+    // searchYouTube({key: window.YOUTUBE_API_KEY, query: input.target.value, max: 5}); 
+  }
+
+  callback(input) { 
+    this.setState({ 
+      video: input[0],
+      videos: input
+    });
+  }
   
+  onClickButton() { 
+    searchYouTube({key: window.YOUTUBE_API_KEY, query: this.state.value, max: 5}, this.callback.bind(this));
   }
   
   render() {  
+    console.log(this.state.value); 
     return (
       <div>
           <nav className="navbar">
             <div className="col-md-6 offset-md-3">
-              <Search onClickFun = {this.onSearchClick.bind(this)} /> 
+              <Search onClickFun = {this.onSearchClick.bind(this)} onClickButton = {this.onClickButton.bind(this)} /> 
             </div>
           </nav>
           <div className="row">

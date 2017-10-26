@@ -1,6 +1,5 @@
 var searchYouTube = (options, callback) => {
   // TODO
-  
   $.ajax({
     url: 'https://www.googleapis.com/youtube/v3/search', 
     type: 'GET',
@@ -13,6 +12,7 @@ var searchYouTube = (options, callback) => {
     },
     success: function (data) {
       callback(data.items);
+      // return callback(data.items) || data.items;
     }
   });
 
