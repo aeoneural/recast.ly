@@ -4,7 +4,8 @@ class App extends React.Component {
     super(props); 
     this.state = { 
       video: window.exampleVideoData[0],
-      videos: window.exampleVideoData
+      videos: window.exampleVideoData,
+      value: null
     };  
     
   }
@@ -15,12 +16,19 @@ class App extends React.Component {
     });
     
   }
+  
+  onSearchClick(input) {
+    
+    // console.log('user typed in:', input.target.value);
+  
+  }
+  
   render() {  
     return (
       <div>
           <nav className="navbar">
             <div className="col-md-6 offset-md-3">
-              <Search /> 
+              <Search onClickFun = {this.onSearchClick.bind(this)} /> 
             </div>
           </nav>
           <div className="row">
