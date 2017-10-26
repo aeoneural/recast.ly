@@ -3,34 +3,35 @@ class App extends React.Component {
   constructor(props) {
     super(props); 
     this.state = { 
-      currentVideo: window.exampleVideoData[0]
-    };
-    
+      video: window.exampleVideoData[0],
+      videos: window.exampleVideoData
+    };  
     
   }
   
-  onVideoClick() {
-    console.log('hello');
+  onVideoClick(input) {
+    this.setState({ 
+      video: input
+    });
+    
   }
-  
-  render() { 
-
+  render() {  
     return (
       <div>
           <nav className="navbar">
             <div className="col-md-6 offset-md-3">
-              <div><h5><em>search</em> view goes here</h5></div>
+              <Search /> 
             </div>
           </nav>
           <div className="row">
             <div className="col-md-7">
-              <VideoPlayer video = {this.state.currentVideo} />
+              <VideoPlayer video = {this.state.video} />
             </div>
             <div className="col-md-5">
-              <VideoList videos = {window.exampleVideoData} onClick = {this.onVideoClick}/>
+              <VideoList onClick = { this.onVideoClick.bind(this) } videos = {this.state.videos}/>
             </div>
           </div>
-        </div> 
+      </div> 
     );
   }
   
